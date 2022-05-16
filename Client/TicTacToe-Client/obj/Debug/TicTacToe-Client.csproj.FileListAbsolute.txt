@@ -1,0 +1,21 @@
+D:\3.RT LK\Programiranje\TicTacToe-Client\TicTacToe-Client\bin\Debug\TicTacToe-Client.exe.config
+D:\3.RT LK\Programiranje\TicTacToe-Client\TicTacToe-Client\bin\Debug\TicTacToe-Client.exe
+D:\3.RT LK\Programiranje\TicTacToe-Client\TicTacToe-Client\bin\Debug\TicTacToe-Client.pdb
+D:\3.RT LK\Programiranje\TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe-Client.csproj.AssemblyReference.cache
+D:\3.RT LK\Programiranje\TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe_Client.Form1.resources
+D:\3.RT LK\Programiranje\TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe_Client.Properties.Resources.resources
+D:\3.RT LK\Programiranje\TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe-Client.csproj.GenerateResource.cache
+D:\3.RT LK\Programiranje\TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe-Client.csproj.CoreCompileInputs.cache
+D:\3.RT LK\Programiranje\TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe-Client.exe
+D:\3.RT LK\Programiranje\TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe-Client.pdb
+D:\3.RT\Programiranje\Alweys TicTacToe main TicTacToe-Client\TicTacToe-Client\bin\Debug\TicTacToe-Client.exe.config
+D:\3.RT\Programiranje\Alweys TicTacToe main TicTacToe-Client\TicTacToe-Client\bin\Debug\TicTacToe-Client.exe
+D:\3.RT\Programiranje\Alweys TicTacToe main TicTacToe-Client\TicTacToe-Client\bin\Debug\TicTacToe-Client.pdb
+D:\3.RT\Programiranje\Alweys TicTacToe main TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe-Client.csproj.AssemblyReference.cache
+D:\3.RT\Programiranje\Alweys TicTacToe main TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe-Client.csproj.SuggestedBindingRedirects.cache
+D:\3.RT\Programiranje\Alweys TicTacToe main TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe_Client.Form1.resources
+D:\3.RT\Programiranje\Alweys TicTacToe main TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe_Client.Properties.Resources.resources
+D:\3.RT\Programiranje\Alweys TicTacToe main TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe-Client.csproj.GenerateResource.cache
+D:\3.RT\Programiranje\Alweys TicTacToe main TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe-Client.csproj.CoreCompileInputs.cache
+D:\3.RT\Programiranje\Alweys TicTacToe main TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe-Client.exe
+D:\3.RT\Programiranje\Alweys TicTacToe main TicTacToe-Client\TicTacToe-Client\obj\Debug\TicTacToe-Client.pdb
