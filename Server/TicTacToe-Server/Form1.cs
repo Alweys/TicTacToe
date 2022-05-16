@@ -56,9 +56,9 @@ namespace TicTacToe_Server
 
         int connected_clients = 0;
 
-        Thread[] threadsArray = new Thread[maxClients+1];
-        ClientInfo[] clients = new ClientInfo[maxClients+1];
-        GameInfo[] games = new GameInfo[(maxClients / 2)+1];
+        Thread[] threadsArray = new Thread[maxClients + 1];
+        ClientInfo[] clients = new ClientInfo[maxClients + 1];
+        GameInfo[] games = new GameInfo[(maxClients / 2) + 1];
         int started_games = 0;
 
         void init()
@@ -75,7 +75,7 @@ namespace TicTacToe_Server
                 clients[i].Pota = false;
                 clients[i].verified = false;
             }
-            for(int i = 0; i < games.Length; i++)
+            for (int i = 0; i < games.Length; i++)
             {
                 games[i].id = -1;
                 games[i]._board = new Token[3, 3];
@@ -87,11 +87,11 @@ namespace TicTacToe_Server
                 games[i].setTurn = false;
                 for (int j = 0; j < 3; j++)
                 {
-                    for(int k = 0; k < 3; k++)
+                    for (int k = 0; k < 3; k++)
                     {
                         games[i]._board[j, k] = Token.Empty;
                     }
-                } 
+                }
             }
 
             /*
@@ -106,7 +106,7 @@ namespace TicTacToe_Server
             clientListPanel.Invoke((MethodInvoker)(() => clientListPanel.Controls.Clear()));
             for (int i = 1; i < maxClients + 1; i++)
             {
-                if(clients[i].connected)
+                if (clients[i].connected)
                 {
                     Label textControl = new Label();
                     textControl.AutoSize = true;
@@ -120,7 +120,7 @@ namespace TicTacToe_Server
                         textControl.Text += "In Game" + "    ";
                     else
                         textControl.Text += "Not In Game" + "    ";
-                    textControl.Location = new Point(5, 5 + (i*15));
+                    textControl.Location = new Point(5, 5 + (i * 15));
                     clientListPanel.Invoke((MethodInvoker)(() => clientListPanel.Controls.Add(textControl)));
                 }
             }
@@ -128,8 +128,8 @@ namespace TicTacToe_Server
 
         void updateGameList()
         {
-            Font MediumFont = new Font("Arial", 10);
-            Font LargeFont = new Font("Arial", 12);
+            Font MediumFont = new Font("Courier", 15);
+            Font LargeFont = new Font("Courier", 20);
             gameListPanel.Invoke((MethodInvoker)(() => gameListPanel.Controls.Clear()));
             for (int i = 0; i < games.Length; i++)
             {
@@ -143,17 +143,17 @@ namespace TicTacToe_Server
                     textControl.Text += "Turn: [" + games[i].playerTurn + "]    ";
                     textControl.Location = new Point(5, 5 + (i * 15));
                     gameListPanel.Invoke((MethodInvoker)(() => gameListPanel.Controls.Add(textControl)));
-                    if(gameSelection.SelectedIndex == i)
+                    if (gameSelection.SelectedIndex == i)
                     {
                         string board = "";
                         for (int k = 0; k < games[i]._board.GetLength(0); k++)
                         {
                             for (int j = 0; j < games[i]._board.GetLength(1); j++)
                             {
-                                if(!games[i]._board[k, j].Equals(Token.Empty))
-                                    board += (games[i]._board[k, j] + "    ");
+                                if (!games[i]._board[k, j].Equals(Token.Empty))
+                                    board += (games[i]._board[k, j] + " ");
                                 else
-                                    board += ("     ");
+                                    board += ("  ");
                             }
                             board += "\n";
                         }
@@ -205,7 +205,7 @@ namespace TicTacToe_Server
 
         void mainGame()
         {
-            while(true)
+            while (true)
             {
                 /*for (int i = 1; i < clients.Length; i++)
                 {
@@ -213,16 +213,16 @@ namespace TicTacToe_Server
                     Thread.Sleep(1000);
                 }*/
 
-                for(int i = 0; i < games.Length; i++)
+                for (int i = 0; i < games.Length; i++)
                 {
-                    if(games[i].id == -1 && !games[i].game_started)
+                    if (games[i].id == -1 && !games[i].game_started)
                     {
-                        for(int j = 1; j < connected_clients; j+=2)
+                        for (int j = 1; j < connected_clients; j += 2)
                         {
-                            if(clients[j].connected && clients[j+1].connected)
+                            if (clients[j].connected && clients[j + 1].connected)
                             {
                                 if (!clients[j].inGame && !clients[j + 1].inGame)
-                                    if (clients[j].ready && clients[j+1].ready)
+                                    if (clients[j].ready && clients[j + 1].ready)
                                     {
                                         games[i].id = i;
                                         games[i].playerID1 = j;
@@ -238,7 +238,7 @@ namespace TicTacToe_Server
                                     }
                             }
                         }
-    
+
                     }
                 }
 
@@ -247,9 +247,9 @@ namespace TicTacToe_Server
 
                 for (int i = 0; i < started_games; i++)
                 {
-                    if(!games[i].game_started)
+                    if (!games[i].game_started)
                     {
-                        if(games[i].setTurn)
+                        if (games[i].setTurn)
                         {
                             listBox1.Invoke((MethodInvoker)(() => listBox1.Items.Add("Set turn for game " + games[i].id)));
                             listBox1.Invoke((MethodInvoker)(() => listBox1.SelectedIndex = listBox1.Items.Count - 1));
@@ -265,7 +265,7 @@ namespace TicTacToe_Server
                             updateGameList();
                         }
                     }
-                    else if(games[i].game_started)
+                    else if (games[i].game_started)
                     {
                         if (HasWon(Token.O, games[i].id))
                         {
@@ -329,7 +329,7 @@ namespace TicTacToe_Server
                                 {
                                     games[i]._board[j, k] = Token.Empty;
                                 }
-                            }  
+                            }
                             updateClientList();
                             updateGameList();
                         }
@@ -396,7 +396,7 @@ namespace TicTacToe_Server
             //stream = client.GetStream();
             if (client.Connected)
             {
-                
+
                 for (int j = 1; j < clients.Length; j++)
                 {
                     if (clients[j].id == -1)
@@ -410,7 +410,7 @@ namespace TicTacToe_Server
                 try
                 {
                     clients[thisClientId].stream = client.GetStream();
-                    string textToSend = "id="+thisClientId;
+                    string textToSend = "id=" + thisClientId;
                     byte[] bytesToSend = ASCIIEncoding.ASCII.GetBytes(textToSend);
                     clients[thisClientId].stream.Write(bytesToSend, 0, bytesToSend.Length);
                 }
@@ -437,13 +437,13 @@ namespace TicTacToe_Server
                     clients[clientID].verified = true;
                     updateClientList();
                 }
-                else if(!data.StartsWith("username=") && !clients[thisClientId].verified)
+                else if (!data.StartsWith("username=") && !clients[thisClientId].verified)
                 {
                     clients[thisClientId].Pota = true;
                 }
                 if (data.StartsWith("chat="))
                 {
-                    if(clients[thisClientId].verified)
+                    if (clients[thisClientId].verified)
                     {
                         string message = data.Replace("chat=", "");
                         int opponentID = -1;
@@ -452,7 +452,7 @@ namespace TicTacToe_Server
 
                         string textToSend = data;
                         byte[] bytesToSend = ASCIIEncoding.ASCII.GetBytes(textToSend);
-                        if(clients[opponentID].stream != null)
+                        if (clients[opponentID].stream != null)
                             clients[opponentID].stream.Write(bytesToSend, 0, bytesToSend.Length);
                     }
                 }
@@ -460,7 +460,7 @@ namespace TicTacToe_Server
                 {
                     string newData = data.Replace("disconnect=", "");
                     int clientID = int.Parse(newData);
-                    if(clients[clientID].verified)
+                    if (clients[clientID].verified)
                     {
                         listBox1.Invoke((MethodInvoker)(() => listBox1.Items.Add("Client with id " + clientID + " disconnected from the Server!")));
                         listBox1.Invoke((MethodInvoker)(() => listBox1.SelectedIndex = listBox1.Items.Count - 1));
@@ -490,6 +490,13 @@ namespace TicTacToe_Server
                             clients[games[gameID].playerID1].gameID = -1;
                             clients[games[gameID].playerID2].gameID = -1;
                             games[gameID].setTurn = true;
+                            for (int j = 0; j < 3; j++)
+                            {
+                                for (int k = 0; k < 3; k++)
+                                {
+                                    games[gameID]._board[j, k] = Token.Empty;
+                                }
+                            }
                             started_games--;
                         }
                         client.Close();
@@ -503,11 +510,11 @@ namespace TicTacToe_Server
                         threadsArray[clientID].Join();
                     }
                 }
-                if(data.Contains("ready="))
+                if (data.Contains("ready="))
                 {
                     string newData = data.Replace("ready=", "");
                     int clientID = int.Parse(newData);
-                    if(clients[clientID].verified)
+                    if (clients[clientID].verified)
                     {
                         clients[clientID].ready = true;
                         if (connected_clients <= 1)
@@ -532,7 +539,7 @@ namespace TicTacToe_Server
                         string strID = newData.Substring(0, 1);
                         //listBox1.Invoke((MethodInvoker)(() => listBox1.Items.Add(strID)));
                         int clientID = int.Parse(strID);
-                        if(clients[clientID].verified)
+                        if (clients[clientID].verified)
                         {
                             if (clientID == games[game].playerID1 || clientID == games[game].playerID2)
                             {
@@ -703,7 +710,7 @@ namespace TicTacToe_Server
                         string newData = data.Replace("nextTurn=", "");
                         string strID = newData.Substring(0, 1);
                         int clientID = int.Parse(strID);
-                        if(clients[clientID].verified)
+                        if (clients[clientID].verified)
                         {
                             if (games[game].game_started && (clientID == games[game].playerID1 || clientID == games[game].playerID2))
                             {
@@ -721,12 +728,12 @@ namespace TicTacToe_Server
                         }
                     }
                 }
-                if(clients[thisClientId].verified)
+                if (clients[thisClientId].verified)
                 {
                     listBox1.Invoke((MethodInvoker)(() => listBox1.Items.Add("[" + thisClientId + "]: " + data)));
                     listBox1.Invoke((MethodInvoker)(() => listBox1.SelectedIndex = listBox1.Items.Count - 1));
                 }
-                else if(clients[thisClientId].Pota)
+                else if (clients[thisClientId].Pota)
                 {
                     listBox1.Invoke((MethodInvoker)(() => listBox1.Items.Add("Bravo Pota!")));
                     listBox1.Invoke((MethodInvoker)(() => listBox1.SelectedIndex = listBox1.Items.Count - 1));
@@ -789,11 +796,11 @@ namespace TicTacToe_Server
             {
                 try
                 {
-                    if(connected_clients == 0)
+                    if (connected_clients == 0)
                         label2.Invoke((MethodInvoker)(() => label2.Text = "Waiting for a connection..."));
                     else
                         label2.Invoke((MethodInvoker)(() => label2.Text = "Clients connected."));
-                    if(connected_clients < maxClients)
+                    if (connected_clients < maxClients)
                     {
                         TcpClient client = server.AcceptTcpClient();
                         if (client.Connected)
@@ -814,12 +821,12 @@ namespace TicTacToe_Server
                         stream.Close();
                         client.Close();
                     }
-                    
+
                 }
                 catch
                 {
 
-                } 
+                }
             }
         }
 
@@ -856,13 +863,13 @@ namespace TicTacToe_Server
             readyPlayer2.Invoke((MethodInvoker)(() => readyPlayer2.Text = "No"));
             string textToSend = "reset";
             byte[] bytesToSend = ASCIIEncoding.ASCII.GetBytes(textToSend);
-            if(clients[1].connected)
+            if (clients[1].connected)
                 clients[1].stream.Write(bytesToSend, 0, bytesToSend.Length);
-            if(clients[2].connected)
+            if (clients[2].connected)
                 clients[2].stream.Write(bytesToSend, 0, bytesToSend.Length);
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
-                for(int j=0; j < 3; j++)
+                for (int j = 0; j < 3; j++)
                 {
                     _board[i, j] = Token.Empty;
                 }
@@ -876,7 +883,7 @@ namespace TicTacToe_Server
 
         private void gameSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(this.Handle != null)
+            if (this.Handle != null)
                 updateGameList();
         }
     }
