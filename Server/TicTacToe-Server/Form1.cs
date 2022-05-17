@@ -430,10 +430,11 @@ namespace TicTacToe_Server
                 if (data.StartsWith("username=") && !clients[thisClientId].verified)
                 {
                     string newData = data.Replace("username=", "");
-                    string strID = newData.Substring(0, 1);
-                    int clientID = int.Parse(strID);
-                    string username = newData.Replace(strID + "=", "");
-                    clients[clientID].name = username;
+                    //string strID = newData.Substring(0, 1);
+                    //int clientID = int.Parse(strID);
+                    int clientID = thisClientId;
+                    //string username = newData.Replace(strID + "=", "");
+                    clients[clientID].name = newData;
                     clients[clientID].verified = true;
                     updateClientList();
                 }
@@ -459,7 +460,8 @@ namespace TicTacToe_Server
                 if (data.Contains("disconnect="))
                 {
                     string newData = data.Replace("disconnect=", "");
-                    int clientID = int.Parse(newData);
+                    //int clientID = int.Parse(newData);
+                    int clientID = thisClientId;
                     if (clients[clientID].verified)
                     {
                         listBox1.Invoke((MethodInvoker)(() => listBox1.Items.Add("Client with id " + clientID + " disconnected from the Server!")));
@@ -513,7 +515,8 @@ namespace TicTacToe_Server
                 if (data.Contains("ready="))
                 {
                     string newData = data.Replace("ready=", "");
-                    int clientID = int.Parse(newData);
+                    //int clientID = int.Parse(newData);
+                    int clientID = thisClientId;
                     if (clients[clientID].verified)
                     {
                         clients[clientID].ready = true;
@@ -536,14 +539,16 @@ namespace TicTacToe_Server
                     if (data.Contains("update=") && games[game].game_started)
                     {
                         string newData = data.Replace("update=", "");
+                        int index = newData.IndexOf("=");
                         string strID = newData.Substring(0, 1);
-                        //listBox1.Invoke((MethodInvoker)(() => listBox1.Items.Add(strID)));
-                        int clientID = int.Parse(strID);
+                        listBox1.Invoke((MethodInvoker)(() => listBox1.Items.Add("niga index" + index)));
+                        //int clientID = int.Parse(strID);
+                        int clientID = thisClientId;
                         if (clients[clientID].verified)
                         {
                             if (clientID == games[game].playerID1 || clientID == games[game].playerID2)
                             {
-                                newData = newData.Remove(0, 2);
+                                newData = newData.Remove(0, 1 + index);
                                 //listBox1.Invoke((MethodInvoker)(() => listBox1.Items.Add("dada " + newData)));
                                 int opponentID = -1;
                                 if (clientID == games[game].playerID1)
@@ -709,7 +714,8 @@ namespace TicTacToe_Server
                     {
                         string newData = data.Replace("nextTurn=", "");
                         string strID = newData.Substring(0, 1);
-                        int clientID = int.Parse(strID);
+                        //int clientID = int.Parse(strID);
+                        int clientID = thisClientId;
                         if (clients[clientID].verified)
                         {
                             if (games[game].game_started && (clientID == games[game].playerID1 || clientID == games[game].playerID2))
