@@ -139,7 +139,7 @@ namespace TicTacToe_Client
                         listBox1.Invoke((MethodInvoker)(() => listBox1.SelectedIndex = listBox1.Items.Count - 1));
                         if (username.Text.Length == 0)
                             username.Invoke((MethodInvoker)(() => username.Text = "CID" + clientID));
-                        string textToSend = "username=" + clientID + "=" + username.Text;
+                        string textToSend = "username="/* + clientID + "="*/ + username.Text;
                         byte[] bytesToSend = ASCIIEncoding.ASCII.GetBytes(textToSend);
                         nwStream.Write(bytesToSend, 0, bytesToSend.Length);
                         player = (clientID % 2 + 1);
