@@ -447,14 +447,17 @@ namespace TicTacToe_Server
                     if (clients[thisClientId].verified)
                     {
                         string message = data.Replace("chat=", "");
-                        int opponentID = -1;
-                        int offset = thisClientId % 2;
-                        opponentID = (thisClientId % 2) == 1 ? thisClientId + offset : thisClientId - 1;
+                        //int opponentID = -1;
+                        //int offset = thisClientId % 2;
+                        //opponentID = (thisClientId % 2) == 1 ? thisClientId + offset : thisClientId - 1;
 
-                        string textToSend = data;
-                        byte[] bytesToSend = ASCIIEncoding.ASCII.GetBytes(textToSend);
-                        if (clients[opponentID].stream != null)
-                            clients[opponentID].stream.Write(bytesToSend, 0, bytesToSend.Length);
+                        for (int j = 1; j < maxClients; j++)
+                        {
+                            string textToSend = data;
+                            byte[] bytesToSend = ASCIIEncoding.ASCII.GetBytes(textToSend);
+                            if (clients[j].stream != null)
+                                clients[j].stream.Write(bytesToSend, 0, bytesToSend.Length);
+                        }
                     }
                 }
                 if (data.Contains("disconnect="))
